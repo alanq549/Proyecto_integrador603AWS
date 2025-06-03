@@ -24,7 +24,7 @@ services:
       NODE_ENV: development
       DATABASE_URL: ${DATABASE_URL}          # URL local MySQL
       DATABASE_URL_AWS: ${DATABASE_URL_AWS}  # URL AWS MySQL
-      FRONTEND_URL: http://18.118.163.43
+      FRONTEND_URL: http://18.118.163.43:8080
       GMAIL_USER: estacionamientomartinez42@gmail.com
       GMAIL_PASS: "rdzd qkfa vxxg rfmj"  # Mejor con comillas por espacios
     networks:

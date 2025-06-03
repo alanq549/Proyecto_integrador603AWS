@@ -1,0 +1,115 @@
+/* Contenedor principal */
+.main-container {
+  @apply min-h-screen bg-gray-50 py-0 px-4 sm:px-6 lg:px-8 dark:bg-gray-600;
+}
+
+.content-container {
+  @apply max-w-4xl mx-auto;
+}
+
+.header-section {
+  @apply mb-8;
+}
+
+.title {
+  @apply text-3xl font-extrabold text-gray-900 dark:text-gray-100;
+}
+
+.subtitle {
+  @apply mt-2 text-gray-600 dark:text-gray-300;
+}
+
+/* Panel de configuración */
+.settings-panel {
+  @apply bg-white shadow-xl rounded-lg overflow-hidden dark:bg-gray-800;
+}
+
+/* Secciones */
+.section {
+  @apply border-b border-gray-200 dark:border-gray-600 p-6 sm:p-8;
+}
+
+.section-title {
+  @apply text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6 flex items-center;
+}
+
+.section-icon {
+  @apply h-5 w-5 mr-2 text-blue-600 dark:text-green-600;
+}
+
+/* Items de configuración */
+.settings-item {
+  @apply flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg;
+}
+
+.settings-item-light {
+  @apply bg-gray-50 dark:bg-gray-600;
+}
+
+.settings-label {
+  @apply block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1;
+}
+
+.settings-description {
+  @apply text-xs text-gray-500 dark:text-gray-400;
+}
+
+/* Toggle switch */
+.toggle-container {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.toggle-enabled {
+  @apply bg-blue-600;
+}
+
+.toggle-disabled {
+  @apply bg-gray-200;
+}
+
+.toggle-circle {
+  @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform;
+}
+
+.toggle-circle-enabled {
+  @apply translate-x-6;
+}
+
+.toggle-circle-disabled {
+  @apply translate-x-1;
+}
+
+/* Enlaces */
+.link-item {
+  @apply flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition;
+}
+
+.link-icon {
+  @apply h-5 w-5 text-gray-400;
+}
+
+/* Acciones */
+.actions-section {
+  @apply p-6 sm:p-8 bg-gray-50 dark:bg-gray-700 flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-3;
+}
+
+.success-message {
+  @apply mr-auto flex items-center text-sm text-green-600 dark:text-green-400;
+}
+
+.success-icon {
+  @apply h-5 w-5 mr-1;
+}
+
+.reset-button {
+  @apply px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.save-button {
+  @apply px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center;
+}
+
+/* Spinner */
+.spinner {
+  @apply animate-spin -ml-1 mr-2 h-4 w-4 text-white;
+}

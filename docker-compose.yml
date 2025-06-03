@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  client:
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: http://localhost:3000/api
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: ${DATABASE_URL}          # URL local MySQL
+      DATABASE_URL_AWS: ${DATABASE_URL_AWS}  # URL AWS MySQL
+      FRONTEND_URL: http://localhost:8080
+      GMAIL_USER: estacionamientomartinez42@gmail.com
+      GMAIL_PASS: "rdzd qkfa vxxg rfmj"  # Mejor con comillas por espacios
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,154 @@
+.register-container {
+  @apply min-h-screen flex;
+   overflow: visible; /* Asegura que la sombra no sea recortada */
+}
+
+.register-image-container {
+  @apply hidden lg:block lg:w-1/2 p-14 relative overflow-hidden;
+  background: 
+    radial-gradient(circle at center, #44deef 0%, #4538d0 100%);
+  animation: enginePulse 3s ease infinite;
+}
+
+/*@keyframes enginePulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
+  }
+  50% { 
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+  }
+}
+
+.register-image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-radial-gradient(
+      circle at center,
+      transparent,
+      transparent 5px,
+      rgba(255,165,0,0.1) 6px,
+      rgba(255,165,0,0.1) 7px,
+      transparent 8px
+    );
+  animation: engineRpm 1s linear infinite;
+  z-index: -1;
+}
+
+@keyframes engineRpm {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+  */
+
+.logo-title-row {
+  @apply flex items-center gap-2;
+}
+
+.log_register {
+  @apply h-20 w-auto;
+}
+
+.register-image {
+  @apply object-cover px-5;
+  width: 100%;
+  height: auto;
+  margin-top: 0%;
+  z-index: 1;
+}
+
+.title1 {
+  @apply text-black text-4xl font-bold;
+}
+
+.subtitle_register {
+  @apply text-2xl text-black mb-4 text-center;
+  padding-top: 10px;
+}
+
+.register-form-container {
+  @apply w-full lg:w-1/2 flex items-center justify-center;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.6);
+}
+
+.register-card {
+  @apply bg-white p-8 rounded-lg w-full max-w-md;
+}
+
+.register-header {
+  @apply text-center mb-8;
+}
+
+.register-header h1 {
+  @apply text-3xl font-bold text-gray-900;
+}
+
+.register-form {
+  @apply space-y-4;
+}
+
+.form-group {
+  @apply mb-4;
+}
+
+.form-group_R {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.form-group_R input {
+  @apply mt-1 block w-full bg-white px-3 py-2 border border-gray-300 rounded-md shadow-sm dark:bg-white;
+  @apply focus:outline-none focus:ring-gray-800 focus:border-gray-800;
+}
+
+.register-button {
+    @apply w-full bg-gradient-to-r from-cyan-600 to-blue-800 text-gray-200 font-bold py-2 px-4 rounded-xl  border-gray-900;
+    @apply hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2;
+    border: 1px solid black;
+}
+
+.register-footer {
+  @apply mt-6 text-center;
+}
+
+.register-footer p {
+  @apply text-sm text-gray-600;
+}
+
+.login-link {
+  @apply font-medium text-blue-600 hover:text-blue-500;
+}
+
+
+
+
+
+
+.input-error {
+  color: #ff4444;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #ff4444;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  border: 1px solid #ffcccc;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

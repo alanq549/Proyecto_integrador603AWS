@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/aws-client"
+
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL_AWS")
+
+}
+
+model cajones {
+  id_cajon  Int       @id @default(autoincrement())
+  nombre    String
+  ubicacion String?
+  capacidad String?
+  ordenes   ordenes[]
+  updatedAt DateTime  @updatedAt
+}
+
+model ordenes_servicios {
+  id_orden    Int
+  id_servicio Int
+
+  ordenes   ordenes   @relation(fields: [id_orden], references: [id_orden], onDelete: Cascade)
+  servicios servicios @relation(fields: [id_servicio], references: [id_servicio], onDelete: Cascade)
+
+  @@id([id_orden, id_servicio])
+  updatedAt DateTime  @updatedAt
+}
+
+model ordenes {
+  id_orden     Int             @id @default(autoincrement())
+  id_vehiculo  Int
+  id_cajon     Int?
+  fecha_inicio DateTime
+  fecha_fin    DateTime?
+  estado       ordenes_estado? @default(pendiente)
+  notas        String?
+  vehiculos    vehiculos       @relation(fields: [id_vehiculo], references: [id_vehiculo], onDelete: Cascade, onUpdate: Restrict)
+  cajones      cajones?        @relation(fields: [id_cajon], references: [id_cajon], onDelete: Restrict, onUpdate: Restrict)
+  pagos        pagos[]
+  servicios_ordenes ordenes_servicios[]
+
+  @@index([id_cajon])
+  @@index([id_vehiculo])
+  updatedAt DateTime  @updatedAt
+}
+
+model pagos {
+  id_pago    Int           @id @default(autoincrement())
+  id_orden   Int
+  monto      Decimal
+  metodo     pagos_metodo?
+  estado     pagos_estado? @default(pendiente)
+  fecha_pago DateTime?     @default(now())
+  ordenes    ordenes       @relation(fields: [id_orden], references: [id_orden], onUpdate: Restrict)
+
+  @@index([id_orden])
+  updatedAt DateTime  @updatedAt
+}
+
+model servicios {
+  id_servicio       Int            @id @default(autoincrement())
+  nombre            String
+  tipo              servicios_tipo
+  descripcion       String?
+  precio            Decimal
+  duracion_estimada Int?
+  activo            Boolean?       @default(true)
+  ordenes_servicios ordenes_servicios[]
+  updatedAt         DateTime       @updatedAt
+}
+
+model tareas {
+  id_tarea     Int               @id @default(autoincrement())
+  titulo       String
+  descripcion  String?
+  id_asignado  Int
+  fecha_limite DateTime?
+  estado       tareas_estado?    @default(pendiente)
+  prioridad    tareas_prioridad? @default(media)
+  usuarios     usuarios          @relation(fields: [id_asignado], references: [id_usuario], onUpdate: Restrict)
+
+  @@index([id_asignado])
+  updatedAt DateTime  @updatedAt
+}
+
+model usuarios {
+  id_usuario         Int                  @id @default(autoincrement())
+  email              String?              @unique
+  password           String
+  nombre             String?
+  apellido_paterno   String?
+  apellido_materno   String?
+  rol                usuarios_rol?        @default(cliente)
+  fecha_creacion     DateTime?            @default(now())
+  tareas             tareas[]
+  vehiculos          vehiculos[]
+  verificationtokens verificationtokens[]
+  updatedAt          DateTime             @updatedAt
+}
+
+model vehiculos {
+  id_vehiculo Int       @id @default(autoincrement())
+  id_usuario  Int
+  marca       String
+  modelo      String
+  anio        Int?
+  placa       String?   @unique
+  color       String?
+  ordenes     ordenes[]
+  usuarios    usuarios  @relation(fields: [id_usuario], references: [id_usuario], onDelete: Restrict, onUpdate: Restrict)
+  updatedAt   DateTime  @updatedAt
+
+  @@index([id_usuario])
+}
+
+model verificationtokens {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  token     String    @unique
+  type      String
+  newEmail  String?
+  createdAt DateTime? @default(now())
+  expiresAt DateTime
+  used      Boolean?  @default(false)
+  usuarios  usuarios  @relation(fields: [userId], references: [id_usuario], onDelete: Cascade, onUpdate: Restrict)
+
+  @@index([userId])
+  updatedAt DateTime  @updatedAt
+}
+
+
+enum servicios_tipo {
+  lavado
+  estacionamiento
+}
+
+enum pagos_metodo {
+  efectivo
+  tarjeta
+  transferencia
+}
+
+enum pagos_estado {
+  pendiente
+  completado
+  reembolsado
+  fallido
+}
+
+enum tareas_estado {
+  pendiente
+  en_progreso
+  completado
+}
+
+enum ordenes_estado {
+  pendiente
+  confirmado
+  en_progreso
+  completado
+  cancelado
+}
+
+enum tareas_prioridad {
+  baja
+  media
+  alta
+}
+
+enum usuarios_rol {
+  cliente
+  admin
+}

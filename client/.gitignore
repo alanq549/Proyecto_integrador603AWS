@@ -1,0 +1,26 @@
+# Dependencias
+node_modules/
+
+# Archivos de build
+dist/
+build/
+
+# Configuración local y archivos de sistema
+.vscode/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db
+
+# Cachés y lock files específicos que no quieres subir
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de Docker que quieres mantener en el repo (Dockerfile no debe ir aquí)
+!Dockerfile
+
+# Opcional: carpeta específica que Docker necesita, si usas nginx u otra
+!nginx/

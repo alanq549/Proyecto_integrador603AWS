@@ -1,0 +1,146 @@
+.login-container {
+    @apply min-h-screen flex;
+     overflow: visible; /* Asegura que la sombra no sea recortada */
+  }
+  
+  .login-image-container {
+    @apply hidden lg:block lg:w-1/2 p-14 relative overflow-hidden;
+    background: 
+      radial-gradient( #44deef 0%, #4538d0 100%);
+   /* animation: enginePulse 3s ease infinite;*/
+  }
+  
+/*  @keyframes enginePulse {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
+    }
+    50% { 
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+    }
+  }*/
+  
+  /* .login-image-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+   background: 
+      repeating-radial-gradient(
+        circle at center,
+        transparent,
+        transparent 5px,
+        rgba(255,165,0,0.1) 6px,
+        rgba(255,165,0,0.1) 7px,
+        transparent 8px
+      );
+    animation: engineRpm 1s linear infinite;
+    z-index: -1;
+
+  }
+  
+  @keyframes engineRpm {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.02); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.7; }
+  }
+
+  */
+
+  
+
+  .logo-title-row {
+    @apply flex items-center gap-2; /* 'gap-4' separa la imagen y el título */
+  }
+  
+  .log_login {
+    @apply h-20 w-auto; /* o ajusta al tamaño deseado */
+  }
+
+  .login-image {
+    @apply  object-cover px-5;
+    width: 100%;
+    height: auto;
+    margin-top: 0%;
+    z-index: 1
+    
+  }
+  .title1 {
+    @apply text-black text-4xl font-bold;
+  }
+  .subtitle_login{
+    @apply text-2xl  text-black mb-4 text-center;
+    padding-top: 10px;
+  }
+
+  .login-form-container {
+    @apply w-full lg:w-1/2 flex items-center justify-center  ;
+    position: relative; /* Necesario para que la sombra se vea correctamente */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 
+                0 10px 10px -5px rgba(0, 0, 0, 0.05);
+    /* Sombra más pronunciada: */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 
+                0 10px 10px -5px rgba(0, 0, 0, 0.6); 
+}
+  
+.login-card {
+    @apply bg-white p-8 rounded-lg ; /* shadow-xl es equivalente a box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); */
+    width: 100%;
+    max-width: 28rem; /* Aproximadamente 448px */
+  }
+  /* ... (el resto de tus estilos existentes se mantienen igual) ... */
+  .login-card {
+    @apply bg-white p-8 rounded-lg  w-full max-w-md;
+
+  }
+  
+  .login-header {
+    @apply text-center mb-8;
+  }
+  
+  .login-header h1 {
+    @apply text-3xl font-bold text-gray-900;
+  }
+  
+  .login-header p {
+    @apply text-gray-600 mt-2;
+  }
+  
+  .login-form {
+    @apply space-y-4;
+  }
+  
+  .form-group_L {
+    @apply mb-4;
+  }
+  
+  .form-group_L label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-700;
+  }
+  
+  .form-group_L input {
+    @apply mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm dark:bg-white ;
+    @apply focus:outline-none focus:ring-gray-800 focus:border-gray-800 text-gray-700 ;
+  }
+  
+  .login-button {
+    @apply w-full bg-gradient-to-r from-cyan-600 to-blue-800 text-gray-200 font-bold py-2 px-4 rounded-xl  ;
+    @apply hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2;
+        border: 1px solid black;
+
+  }
+  
+  .login-footer {
+    @apply mt-6 text-center;
+  }
+  
+  .login-footer p {
+    @apply text-sm text-gray-600;
+  }
+  
+  .register-link {
+    @apply font-medium text-blue-600 hover:text-blue-500;
+  }

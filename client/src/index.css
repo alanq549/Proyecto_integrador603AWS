@@ -1,0 +1,47 @@
+/* ✅ Primero los imports normales */
+@import './styles/Skeleton.css';
+@import './styles/home.css';
+@import './styles/loader.css';
+@import './styles/login.css';
+@import './styles/modal.css';
+@import './styles/perfilBase.css';
+@import './styles/register.css';
+@import './styles/admin/Dashboard.css';
+@import './styles/admin/ManageUsers.css';
+@import './styles/admin/Perfil.css';
+@import './styles/admin/Tasks.css';
+@import './styles/services/ServiciosAdmin.css';
+
+/* ✅ Luego el setup de Tailwind (debe ir antes de @layer para que puedas extender correctamente) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Después tus extensiones personalizadas */
+@layer base {
+  body {
+    @apply scrollbar-custom;
+  }
+}
+
+@layer utilities {
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #4B5563 #1F2937;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: #1F2937;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: #4B5563;
+    border-radius: 4px;
+    border: 2px solid #1F2937;
+  }
+}
+

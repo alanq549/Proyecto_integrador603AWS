@@ -91,3 +91,54 @@ export async function syncBidireccional() {
   }
 }
 
+
+export async function syncInicialDesdeAWS() {
+  const modelosPadres = [
+    "usuarios",
+    "vehiculos",
+    "ordenes",
+    "servicios",
+    "cajones",
+    "pagos",
+    "tareas",
+    "verificationtokens",
+  ];
+
+  const modelosHijos = ["ordenes_servicios"];
+
+  // Para copiar todos los registros sin filtro de fecha
+  for (const modelo of [...modelosPadres, ...modelosHijos]) {
+    const registros = await (aws as any)[modelo].findMany();
+
+    for (const registro of registros) {
+      const keys = PK_MAP[modelo];
+      if (!keys) {
+        console.warn(`No se definieron claves primarias para modelo ${modelo}`);
+        continue;
+      }
+
+      let where: any;
+      if (keys.length === 1) {
+        where = { [keys[0]]: registro[keys[0]] };
+      } else {
+        const compositeKey = keys.join('_');
+        const compositeWhere: any = {};
+        for (const key of keys) {
+          compositeWhere[key] = registro[key];
+        }
+        where = { [compositeKey]: compositeWhere };
+      }
+
+      const existe = await (local as any)[modelo].findUnique({ where });
+
+      if (!existe) {
+        await (local as any)[modelo].create({ data: registro });
+      } else {
+        // Si quieres también actualizar registros existentes con datos de AWS, puedes:
+        // await (local as any)[modelo].update({ where, data: registro });
+      }
+    }
+  }
+
+  console.log("✅ Sincronización inicial desde AWS a Local completada.");
+}

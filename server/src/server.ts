@@ -7,6 +7,9 @@ import { syncInicialDesdeAWS } from './services/syncService';
 
 const PORT = process.env.PORT || 3000;
 
+const dbLocal = process.env.DATABASE_URL
+
+console.log("🔗 Conectando a la base de datos local:", dbLocal);
 async function startServer() {
   try {
     console.log("🚀 Iniciando sincronización inicial desde AWS a Local...");

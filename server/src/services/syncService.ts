@@ -91,7 +91,6 @@ export async function syncBidireccional() {
   }
 }
 
-
 export async function syncInicialDesdeAWS() {
   const modelosPadres = [
     "usuarios",

@@ -3,7 +3,7 @@ import app from './app';
 // 👇 Importa el job para que se inicie al levantar el server
 import './jobs/ordenesJob';
 import './jobs/syncJob';     // importa el job de sincronización
-import { syncInicialDesdeAWS } from '../src/services/syncService';
+import { syncInicialDesdeAWS } from './services/syncService';
 
 const PORT = process.env.PORT || 3000;
 

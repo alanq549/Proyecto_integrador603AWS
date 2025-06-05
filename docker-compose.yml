@@ -5,14 +5,14 @@ services:
     build:
       context: ./client
       args:
-        VITE_API_URL: http://carwashdp603.ddns.net:3000/api  # Ahora HTTPS aquí
-    ports:
-      - "80:80"
-      - "8443:443"
+        VITE_API_URL: https://carwashdp603.ddns.net/api
+    # ports:
+    #   - "8080:80"
+    #   - "8443:443"
     depends_on:
       - server
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:ro       # Certificados read-only
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - app-network
     restart: unless-stopped
@@ -20,19 +20,20 @@ services:
   server:
     build: ./server
     ports:
-      - "3000:3000"
+      - "3000:3000"  # nginx hace proxy a este puerto
     env_file:
       - .env
     environment:
       NODE_ENV: development
-      DATABASE_URL: ${DATABASE_URL}          # URL local MySQL
-      DATABASE_URL_AWS: ${DATABASE_URL_AWS}  # URL AWS MySQL
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_URL_AWS: ${DATABASE_URL_AWS}
       FRONTEND_URL: https://carwashdp603.ddns.net
       GMAIL_USER: estacionamientomartinez42@gmail.com
       GMAIL_PASS: "rdzd qkfa vxxg rfmj"
     networks:
       - app-network
     restart: unless-stopped
+
 
 networks:
   app-network:

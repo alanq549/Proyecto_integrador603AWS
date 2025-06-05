@@ -1,22 +1,15 @@
 // src/server.ts
-import fs from 'fs';
-import https from 'https';
 import app from './app';
+// 👇 Importa el job para que se inicie al levantar el server
 import './jobs/ordenesJob';
-import './jobs/syncJob';
+import './jobs/syncJob';     // importa el job de sincronización
 import { syncInicialDesdeAWS } from './services/syncService';
 
 const PORT = process.env.PORT || 3000;
 
-// Ruta a los certificados (ajusta si los moviste)
-const sslOptions = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-};
+const dbLocal = process.env.DATABASE_URL
 
-const dbLocal = process.env.DATABASE_URL;
 console.log("🔗 Conectando a la base de datos local:", dbLocal);
-
 async function startServer() {
   try {
     console.log("🚀 Iniciando sincronización inicial desde AWS a Local...");
@@ -24,12 +17,11 @@ async function startServer() {
     console.log("✅ Sincronización inicial completada.");
   } catch (error) {
     console.error("❌ Error durante sincronización inicial:", error);
-    // Decide si quieres seguir arrancando o detener aquí
+    // Opcional: decidir si continuar con el arranque o no
   }
 
-  // 🚀 Iniciar el servidor con HTTPS
-  https.createServer(sslOptions, app).listen(PORT, () => {
-    console.log(`✅ Servidor HTTPS corriendo en https://carwashdp603.ddns.net:${PORT}`);
+  app.listen(3000, '0.0.0.0', () => {
+    console.log(`Servidor corriendo en :3000`);
   });
 }
 

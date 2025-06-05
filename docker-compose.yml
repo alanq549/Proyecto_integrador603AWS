@@ -30,10 +30,6 @@ services:
       FRONTEND_URL: https://carwashdp603.ddns.net
       GMAIL_USER: estacionamientomartinez42@gmail.com
       GMAIL_PASS: "rdzd qkfa vxxg rfmj"
-
-    volumes:
-    - ./cert.pem:/app/cert.pem
-    - ./key.pem:/app/key.pem
     networks:
       - app-network
     restart: unless-stopped

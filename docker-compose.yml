@@ -5,7 +5,7 @@ services:
     build:
       context: ./client
       args:
-        VITE_API_URL: https://carwashdp603.ddns.net/api
+        VITE_API_URL: https://carwashdp603.ddns.net:3000/api
     # ports:
     #   - "8080:80"
     #   - "8443:443"

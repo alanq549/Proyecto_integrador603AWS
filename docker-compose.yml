@@ -5,7 +5,7 @@ services:
     build:
       context: ./client
       args:
-        VITE_API_URL: https://carwashdp603.ddns.net:3000/api
+        VITE_API_URL: ${VITE_API_URL}
     # ports:
     #   - "8080:80"
     #   - "8443:443"
@@ -27,9 +27,9 @@ services:
       NODE_ENV: development
       DATABASE_URL: ${DATABASE_URL}
       DATABASE_URL_AWS: ${DATABASE_URL_AWS}
-      FRONTEND_URL: https://carwashdp603.ddns.net
-      GMAIL_USER: estacionamientomartinez42@gmail.com
-      GMAIL_PASS: "rdzd qkfa vxxg rfmj"
+      FRONTEND_URL: ${FRONTEND_URL}
+      GMAIL_USER: ${GMAIL_USER}
+      GMAIL_PASS: ${GMAIL_PASS}
 
     volumes:
     - ./cert.pem:/app/cert.pem

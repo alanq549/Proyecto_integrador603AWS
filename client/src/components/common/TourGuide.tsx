@@ -509,6 +509,15 @@ export const startManualTour = (
   userType: "admin" | "client",
   pathname: string
 ) => {
+
+    const isAdminRoute = pathname.startsWith("/admin");
+  const isClientRoute = pathname.startsWith("/client");
+
+  if ((userType === "admin" && !isAdminRoute) ||
+      (userType === "client" && !isClientRoute)) {
+    return; // Evita mostrar el tour si el tipo de usuario no coincide con la ruta
+  }
+
   // Configuración de los tours para cada tipo de usuario y ruta
   const tourConfig: TourConfig = {
     "/admin/dashboard": {

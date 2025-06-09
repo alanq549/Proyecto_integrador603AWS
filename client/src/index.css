@@ -11,6 +11,7 @@
 @import './styles/admin/Perfil.css';
 @import './styles/admin/Tasks.css';
 @import './styles/services/ServiciosAdmin.css';
+@import 'driver.js/dist/driver.css';
 
 /* ✅ Luego el setup de Tailwind (debe ir antes de @layer para que puedas extender correctamente) */
 @tailwind base;

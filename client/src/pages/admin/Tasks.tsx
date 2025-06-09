@@ -263,7 +263,7 @@ return (
 
     <div className="space-y-8">
       {/* Formulario para nueva tarea */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700" id="add-task">
         <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Agregar Nueva Tarea</h2>
         <form onSubmit={handleAddTask} className="space-y-4">
           <div>
@@ -322,6 +322,7 @@ return (
               loading.add ? 'opacity-70 cursor-not-allowed' : ''
             } dark:bg-blue-700 dark:hover:bg-blue-800`}
             disabled={loading.add}
+            id="add-tasks-btn"
           >
             {loading.add ? (
               <div className="flex items-center justify-center">
@@ -342,7 +343,7 @@ return (
       </div>
 
       {/* Listado de tareas */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700" id="tasks-list">
         <div className="flex space-x-2 mb-6">
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg dark:bg-blue-700">Todas</button>
         </div>

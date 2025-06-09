@@ -237,6 +237,7 @@ const ServiciosAdmin = () => {
         <button
           onClick={() => setShowForm(!showForm)}
           className="add-service-button"
+          id="new-service"
         >
           {showForm ? "Cancelar" : "Nuevo Servicio"}
         </button>
@@ -247,6 +248,7 @@ const ServiciosAdmin = () => {
           <form
             onSubmit={handleRegisterService}
             className="space-y-5 dark:bg-gray-800 p-5 rounded"
+            id="from-new-service"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
               <div className="form-group">
@@ -368,7 +370,7 @@ const ServiciosAdmin = () => {
 
       {/*modal para la edicion de un servicio */}
       <div className="services-table-container">
-        <div className="overflow-x-auto rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+        <div className="overflow-x-auto rounded-xl shadow-sm border border-gray-100 dark:border-gray-700" id="list-services">
           <table className="services-table">
             <thead className="services-table-header">
               <tr>
@@ -406,7 +408,7 @@ const ServiciosAdmin = () => {
                     <StatusBadge active={service.activo} />
                   </td>
                   <td>
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-2" id="btn-accion">
                       <button
                         onClick={() => {
                           setServiceToEdit(service);

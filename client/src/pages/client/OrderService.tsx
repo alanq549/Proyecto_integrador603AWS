@@ -421,7 +421,7 @@ function getCDMXISOString(date: Date): string {
         <div className="bg-white rounded-xl shadow-md overflow-hidden dark:bg-gray-800 dark:border dark:border-gray-700">
           <div className="p-6">
             {/* Selección de vehículo */}
-            <div className="mb-8">
+            <div className="mb-8" id="vehcule-selection">
               <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-gray-200 flex items-center gap-2">
                 <FaCar className="text-blue-500" />
                 Tu vehículo
@@ -516,10 +516,10 @@ function getCDMXISOString(date: Date): string {
             </div>
 
             {/* Selección de fecha y hora */}
-            <div className="mb-8">
+            <div className="mb-8" id="hors-selection">
               <h2 className="text-xl font-semibold text-gray-800 mb-4 dark:text-gray-200 flex items-center gap-2">
                 <FaCalendarAlt className="text-blue-500" />
-                Fecha y hora de reserva
+                Fecha y hora de reserva horarios de atencion 8 am - 8pm
               </h2>
               <div className="max-w-md">
                 <input
@@ -555,7 +555,7 @@ function getCDMXISOString(date: Date): string {
             </div>
 
             {/* Listado de servicios */}
-            <div>
+            <div id="service-selection">
               <h2 className="text-xl font-semibold text-gray-800 mb-6 dark:text-gray-200 flex items-center gap-2">
                 <FaCogs className="text-indigo-500" />
                 Servicios disponibles

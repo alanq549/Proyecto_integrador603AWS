@@ -177,11 +177,12 @@ if (loading.users && users.length === 0) {
   theme={darkMode ? 'dark' : 'light'}
   toastClassName="rounded-md shadow-lg"
 />
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6" >
         <h2 className="text-2xl font-bold">Gestión de Usuarios</h2>
         <button
           onClick={() => setShowForm(!showForm)}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          id="btn-addAdmin"
         >
           {showForm ? "Cancelar" : "Nuevo Administrador"}
         </button>
@@ -289,7 +290,7 @@ if (loading.users && users.length === 0) {
           {error}
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-md overflow-hidden dark:bg-gray-800 dark:shadow-gray-900/50">
+        <div className="bg-white rounded-xl shadow-md overflow-hidden dark:bg-gray-800 dark:shadow-gray-900/50" id="users">
           <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
               <thead className="bg-gray-50 dark:bg-gray-700">
@@ -340,6 +341,7 @@ if (loading.users && users.length === 0) {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                       
                       <button
+                      id="btn-deleteUser"
                         onClick={() => deleteUser(user.id_usuario)}
                         className="px-3 py-1.5 bg-red-100 text-red-800 rounded-md hover:bg-red-200 disabled:opacity-50
                           dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50"

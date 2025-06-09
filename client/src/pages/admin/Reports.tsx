@@ -176,7 +176,7 @@ const Reports = () => {
   const { darkMode } = useTheme();
 
   return (
-    <div className="admin-content p-6">
+    <div className="admin-content p-6" id="Report">
       <div className="flex justify-between items-center mb-6">
         <h1 className="content-title text-2xl font-bold">
           Reportes y Estadísticas
@@ -187,7 +187,7 @@ const Reports = () => {
           theme={darkMode ? "dark" : "light"}
           toastClassName="rounded-md shadow-lg"
         />
-        <div className="flex space-x-2">
+        <div className="flex space-x-2" id="btn-filter-Report">
           <button
             onClick={() => setTimeRange("week")}
             className={`px-3 py-1 rounded-md ${

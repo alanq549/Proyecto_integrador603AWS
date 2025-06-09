@@ -86,8 +86,8 @@ const quickActions = [
       ) : (
         <>
           {/* Widgets principales */}
-          <div className="dashboard-widgets">
-            <div className="widget widget-primary">
+          <div className="dashboard-widgets" id="dashboard-stats">
+            <div className="widget widget-primary" id="recent-orders" >
               <div className="widget-icon">📋</div>
               <div>
                 <h3>Órdenes hoy</h3>
@@ -98,7 +98,7 @@ const quickActions = [
               </div>
             </div>
 
-            <div className="widget widget-secondary">
+            <div className="widget widget-secondary" id="clients">
               <div className="widget-icon">👥</div>
               <div>
                 <h3>Clientes</h3>
@@ -109,7 +109,7 @@ const quickActions = [
               </div>
             </div>
 
-            <div className="widget widget-tertiary">
+            <div className="widget widget-tertiary" id="services">
               <div className="widget-icon">🚙</div>
               <div>
                 <h3>Servicios activos</h3>
@@ -120,7 +120,7 @@ const quickActions = [
               </div>
             </div>
 
-            <div className="widget widget-accent">
+            <div className="widget widget-accent" id="pending-tasks">
               <div className="widget-icon">⏳</div>
               <div>
                 <h3>Tareas pendientes</h3>

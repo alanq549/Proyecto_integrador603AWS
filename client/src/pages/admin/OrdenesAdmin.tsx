@@ -473,7 +473,7 @@ const OrdenesAdmin = () => {
       </h1>
 
       {/* Formulario de registro */}
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8 dark:bg-gray-800">
+      <div className="bg-white p-6 rounded-lg shadow-md mb-8 dark:bg-gray-800" >
         <h2 className="text-xl font-semibold mb-4">Registrar Nueva Orden</h2>
 
         {error && (
@@ -482,10 +482,10 @@ const OrdenesAdmin = () => {
           </div>
         )}
 
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" id="from-Orden" onSubmit={handleSubmit} >
           {/* Tipo de cliente */}
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-            <div className="flex items-center mb-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700" id="type-client">
+            <div className="flex items-center mb-4" >
               <svg
                 className="w-5 h-5 mr-2 text-gray-700 dark:text-gray-300"
                 fill="none"
@@ -565,7 +565,7 @@ const OrdenesAdmin = () => {
           </div>
 
           {/* Sección de información del cliente */}
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700" id="client-register-form">
             <div className="flex items-center mb-4">
               <svg
                 className="w-5 h-5 mr-2 text-gray-700 dark:text-gray-300"
@@ -614,6 +614,7 @@ const OrdenesAdmin = () => {
                         placeholder="correo@ejemplo.com"
                         className="block w-full pl-10 pr-3 py-2 rounded-l-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required
+                        
                       />
                     </div>
                     <button
@@ -621,6 +622,7 @@ const OrdenesAdmin = () => {
                       onClick={buscarClientes}
                       disabled={loading}
                       className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-r-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                      id="client-register-form-btn"
                     >
                       {loading ? (
                         <>
@@ -670,7 +672,7 @@ const OrdenesAdmin = () => {
 
                   {/* Lista de clientes encontrados */}
                   {clientesEncontrados.length > 0 && (
-                    <div className="mt-2 border border-gray-200 rounded-md overflow-hidden dark:border-gray-700">
+                    <div className="mt-2 border border-gray-200 rounded-md overflow-hidden dark:border-gray-700" id="client-register">
                       <ul className="divide-y divide-gray-200 dark:divide-gray-700 max-h-60 overflow-y-auto">
                         {clientesEncontrados.map((cliente) => (
                           <li
@@ -751,7 +753,7 @@ const OrdenesAdmin = () => {
                         </div>
                       </div>
                     ) : (
-                      <p className="text-gray-500 dark:text-gray-400 italic">
+                      <p className="text-gray-500 dark:text-gray-400 italic" id="client-register">
                         Ningún cliente seleccionado
                       </p>
                     )}
@@ -1123,7 +1125,7 @@ const OrdenesAdmin = () => {
           </div>
 
           {/* Servicios */}
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700" id="view-service">
             <div className="flex items-center mb-4">
               <svg
                 className="w-5 h-5 mr-2 text-gray-700 dark:text-gray-300"
@@ -1147,6 +1149,7 @@ const OrdenesAdmin = () => {
               {servicios.map((servicio) => (
                 <div
                   key={servicio.id_servicio}
+                  id="select-service"
                   className={`p-3 border rounded-md cursor-pointer transition-colors duration-150 ${
                     idServicios.includes(servicio.id_servicio)
                       ? "border-blue-300 bg-blue-50 dark:border-blue-700 dark:bg-blue-900/30"
@@ -1254,6 +1257,7 @@ const OrdenesAdmin = () => {
           {/* Acciones */}
           <div className="flex justify-end space-x-3">
             <button
+            id="cancel-btn"
               type="button"
               onClick={resetForm}
               disabled={loading}
@@ -1276,6 +1280,7 @@ const OrdenesAdmin = () => {
               Cancelar
             </button>
             <button
+             id="confir-btn"
               type="submit"
               disabled={loading}
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -1335,7 +1340,7 @@ const OrdenesAdmin = () => {
         </h2>
 
         <div className="overflow-x-auto">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" id="list-active">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-xs md:text-sm">
               <thead className="bg-gray-50 dark:bg-gray-700 p-5">
                 <tr>

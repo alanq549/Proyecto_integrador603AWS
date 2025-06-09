@@ -16,6 +16,7 @@
     "axios": "^1.9.0",
     "client": "file:",
     "dotenv": "^16.5.0",
+    "driver.js": "^1.3.6",
     "framer-motion": "^12.15.0",
     "gsap": "^3.13.0",
     "html2canvas": "^1.4.1",

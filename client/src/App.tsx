@@ -29,6 +29,8 @@ import HistorialOrdenes from "./pages/admin/HistorialOrdenes";
 import Reports from "./pages/admin/Reports";
 import ProtectedRoute from "./components/ProtectedRoute"; // Asegúrate de importar el componente
 import AgregarVehiculo from "./pages/client/AgregarVehiculo";
+import 'driver.js/dist/driver.css';
+
 
 function AppWrapper() {
   const location = useLocation();

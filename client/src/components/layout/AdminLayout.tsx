@@ -1,6 +1,5 @@
 import { BaseLayout } from "./BaseLayout";
-import AlertaOrdenes from "../common/AlertaOrdenes"; // Ajusta la ruta si es necesario
-
+import AlertaOrdenes from "../common/AlertaOrdenes";
 import {
   FaTachometerAlt,
   FaUsers,
@@ -22,12 +21,12 @@ const AdminLayout = () => {
     { path: "/admin/Informes", label: "Reports", icon: <FaInfo /> },
   ];
 
-  return <>
-<BaseLayout rol="admin" sidebarItems={sidebarItems} />
-        <AlertaOrdenes />
-
-  </>
-  
+  return (
+    <>
+      <BaseLayout rol="admin" sidebarItems={sidebarItems} />
+      <AlertaOrdenes />
+    </>
+  );
 };
 
 export default AdminLayout;

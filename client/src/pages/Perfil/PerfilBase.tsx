@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { useTheme } from '../../components/common/ThemeContext'; // ajuste según tu estructura
+import { useTheme } from "../../components/common/ThemeContext"; // ajuste según tu estructura
 
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -92,42 +92,40 @@ const PerfilBase = ({
   }, [nombre, correo, apellido_paterno, apellido_materno, rol]);
 
   // Cargar vehículos del cliente
-useEffect(() => {
-  const fetchVehicles = async () => {
-    if (isAdmin) return;
+  useEffect(() => {
+    const fetchVehicles = async () => {
+      if (isAdmin) return;
 
-    try {
-      setLoading((prev) => ({ ...prev, vehicles: true }));
-      const response = await fetch(`${API_URL}/vehicles/user/${id}`);
+      try {
+        setLoading((prev) => ({ ...prev, vehicles: true }));
+        const response = await fetch(`${API_URL}/vehicles/user/${id}`);
 
-      if (!response.ok) {
-        console.warn("No se encontraron vehículos para el cliente");
-        return;
+        if (!response.ok) {
+          console.warn("No se encontraron vehículos para el cliente");
+          return;
+        }
+
+        const data = await response.json();
+        const vehicles = data.vehicles || [];
+
+        setVehiculos(vehicles);
+
+        // ✅ Solo mostrar toast si hay vehículos
+        if (vehicles.length > 0) {
+          toast.success("Vehículos cargados correctamente");
+        } else {
+          toast.info("No se encontraron vehículos para este usuario");
+        }
+      } catch (error) {
+        console.error("Error al obtener vehículos:", error);
+        toast.error("Error al cargar vehículos");
+      } finally {
+        setLoading((prev) => ({ ...prev, vehicles: false }));
       }
+    };
 
-      const data = await response.json();
-      const vehicles = data.vehicles || [];
-
-      setVehiculos(vehicles);
-
-      // ✅ Solo mostrar toast si hay vehículos
-      if (vehicles.length > 0) {
-        toast.success("Vehículos cargados correctamente");
-      } else {
-        toast.info("No se encontraron vehículos para este usuario");
-      }
-
-    } catch (error) {
-      console.error("Error al obtener vehículos:", error);
-      toast.error("Error al cargar vehículos");
-    } finally {
-      setLoading((prev) => ({ ...prev, vehicles: false }));
-    }
-  };
-
-  fetchVehicles();
-}, [id, isAdmin]);
-
+    fetchVehicles();
+  }, [id, isAdmin]);
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -193,18 +191,20 @@ useEffect(() => {
     }
   };
 
-    const { darkMode } = useTheme();
-
+  const { darkMode } = useTheme();
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 dark:bg-gray-900  ">
-<ToastContainer
-  position="top-right"
-  autoClose={1500}
-  theme={darkMode ? 'dark' : 'light'}
-  toastClassName="rounded-md shadow-lg"
-/>
-      <div className={`max-w-4xl mx-auto ${isAdmin ? "max-w-2xl" : ""}`}>
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        theme={darkMode ? "dark" : "light"}
+        toastClassName="rounded-md shadow-lg"
+      />
+      <div
+        className={`max-w-4xl mx-auto ${isAdmin ? "max-w-2xl" : ""}`}
+        id={isAdmin ? "perfilAdmin" : "perfilClient"}
+      >
         {/* Header */}
         <div className="flex items-center justify-between mb-8 ">
           <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-3 dark:text-gray-300">
@@ -213,6 +213,7 @@ useEffect(() => {
           </h1>
           <button
             onClick={handleModalToggle}
+            id={isAdmin ? "btn-edit-infoA" : "btn-edit-infoC"}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <FaUserEdit />
@@ -264,7 +265,7 @@ useEffect(() => {
             </div>
 
             {!isAdmin && (
-              <div className="border-t border-gray-200 pt-6">
+              <div className="border-t border-gray-200 pt-6" id="section-vehicles">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-3 dark:text-gray-200">
                     <FaCar className="text-gray-700 dark:text-gray-300 " />
@@ -273,6 +274,7 @@ useEffect(() => {
                   <Link
                     to="/client/addvehicle"
                     className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                    id="btn-addVehicle"
                   >
                     Agregar Vehículo
                   </Link>
@@ -289,13 +291,11 @@ useEffect(() => {
                       const iconSrc = brandIcons[marcaLower];
 
                       return (
-                        
                         <div
                           key={vehiculo.id_vehiculo}
                           className="border border-gray-200 rounded-xl p-5 bg-white hover:shadow-md transition-shadow duration-200 dark:bg-gray-800 dark:border-gray-700 
                           dark:hover:shadow-md "
                         >
-
                           <div className="flex gap-4">
                             <div className="flex-shrink-0">
                               {iconSrc ? (
@@ -368,7 +368,12 @@ useEffect(() => {
       {/* Modal de edición */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto dark:bg-gray-800 dark:text-gray-200">
+          <div
+            className="bg-white rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto dark:bg-gray-800 dark:text-gray-200"
+
+id={isAdmin ? "form-edit" : "form-editc"}
+
+          >
             <div className="p-6">
               <div className="flex justify-between items-center mb-4 ">
                 <h2 className="text-xl font-bold text-gray-800  dark:text-gray-50">
@@ -403,6 +408,7 @@ useEffect(() => {
                     Correo
                   </label>
                   <input
+                    id="Emailt"
                     type="email"
                     name="correo"
                     value={form.correo}
@@ -449,10 +455,12 @@ useEffect(() => {
                     type="button"
                     onClick={handleModalToggle}
                     className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:bg-gray-200"
+                    id="btn-cancel"
                   >
                     Cancelar
                   </button>
                   <button
+                    id="btn-save"
                     type="submit"
                     disabled={loading.update}
                     className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-400 flex items-center gap-2"

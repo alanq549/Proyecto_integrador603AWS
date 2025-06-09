@@ -163,7 +163,7 @@ const formatDate = (dateString: string | null | undefined) => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto" id="history-selection">
       <h1 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">
         Mis Servicios
       </h1>
@@ -176,6 +176,7 @@ const formatDate = (dateString: string | null | undefined) => {
               : "text-gray-500 hover:text-gray-700"
           }`}
           onClick={() => setActiveTab("activos")}
+          id="actives-selection"
         >
           Activos
         </button>
@@ -186,6 +187,7 @@ const formatDate = (dateString: string | null | undefined) => {
               : "text-gray-500 hover:text-gray-700"
           }`}
           onClick={() => setActiveTab("historicos")}
+          id="history-selection"
         >
           Histórico
         </button>

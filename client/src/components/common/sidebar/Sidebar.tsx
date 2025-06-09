@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { FaUserShield, FaUser } from "react-icons/fa"; // Admin y Cliente
+import { FaUserShield, FaUser, FaQuestionCircle } from "react-icons/fa"; // Admin y Cliente
 import type { ReactNode } from "react";
+import { startManualTour } from "../TourGuide"; // Asegúrate de que la ruta es correcta
 
 
 import "./Sidebar.css";
@@ -30,38 +31,40 @@ const Sidebar = ({ items, rol }: SidebarProps) => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [user, setUser] = useState<User | null>(null); 
-
-          const API_URL = import.meta.env.VITE_API_URL;
-
-
-
-const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-const userId = storedUser.id;
-
-
+  const [user, setUser] = useState<User | null>(null);
+  const API_URL = import.meta.env.VITE_API_URL;
+  const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+  const userId = storedUser.id;
 
   const panelTitle = rol === "admin" ? "PANEL DE ADMINISTRACIÓN" : "MI CUENTA";
 
- useEffect(() => {
-  const fetchUser = async () => {
-    if (!userId) {
-      console.error("ID de usuario no encontrado en localStorage");
-      return;
-    }
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (!userId) {
+        console.error("ID de usuario no encontrado en localStorage");
+        return;
+      }
 
-    try {
-      const res = await fetch(`${API_URL}/profile/${userId}`);
-      if (!res.ok) throw new Error("No se pudo obtener el usuario");
-      const data = await res.json();
-      setUser(data);
-    } catch (err) {
-      console.error("Error al obtener el perfil:", err);
-    }
+      try {
+        const res = await fetch(`${API_URL}/profile/${userId}`);
+        if (!res.ok) throw new Error("No se pudo obtener el usuario");
+        const data = await res.json();
+        setUser(data);
+      } catch (err) {
+        console.error("Error al obtener el perfil:", err);
+      }
+    };
+
+    fetchUser();
+  }, [userId]);
+
+
+    const handleShowTour = () => {
+    const mappedRol = rol === "cliente" ? "client" : rol;
+    startManualTour(mappedRol, location.pathname);
+    setShowUserMenu(false);
   };
 
-  fetchUser();
-}, [userId]);
 
   return (
     <>
@@ -102,29 +105,38 @@ const userId = storedUser.id;
         {/* Esta parte se mantiene igual, el mt-auto hará su magia */}
         <div className="user-section">
           <div
-  className="user-profile flex items-center p-3 cursor-pointer hover:bg-gray-700 rounded"
-  onClick={() => setShowUserMenu(!showUserMenu)}
->
-  {rol === "admin" ? (
-    <FaUserShield className="text-white mr-4" />
-  ) : (
-    <FaUser className="text-white mr-4" />
-  )}
-  {user ? (
-    <span className="text-white">
-      {user.nombre && user.apellido_materno
-        ? `${user.nombre} ${user.apellido_materno}`
-        : "Completa tu perfil"}
-    </span>
-  ) : (
-    <span className="text-white">Cargando...</span>
-  )}
-</div>
+            className="user-profile flex items-center p-3 cursor-pointer hover:bg-gray-700 rounded"
+            onClick={() => setShowUserMenu(!showUserMenu)}
+          >
+            {rol === "admin" ? (
+              <FaUserShield className="text-white mr-4" />
+            ) : (
+              <FaUser className="text-white mr-4" />
+            )}
+            {user ? (
+              <span className="text-white">
+                {user.nombre && user.apellido_materno
+                  ? `${user.nombre} ${user.apellido_materno}`
+                  : "Completa tu perfil"}
+              </span>
+            ) : (
+              <span className="text-white">Cargando...</span>
+            )}
+          </div>
 
           {/* aqui es donde va a estar lo de la api, ya lo demas funciona como debe pero el detalle es que cmo es uno compartido aqui nesesito ver que use se logeo y obtener sus datos*/}
           {/* Menú de Usuario (modal) */}
           {showUserMenu && (
             <div className="absolute bottom-16 left-4 bg-gray-600 dark:bg-gray-800 rounded-lg shadow-xl py-1 w-56 z-50 border border-gray-200 dark:border-gray-700 overflow-hidden">
+              {/* Botón para mostrar el tour */}
+              <button
+                onClick={handleShowTour}
+                className="flex items-center w-full px-4 py-3 text-gray-200 dark:text-gray-200 hover:bg-gray-700 dark:hover:bg-gray-700 transition-colors text-left"
+              >
+                <FaQuestionCircle className="w-5 h-5 mr-3 text-gray-200 dark:text-gray-400" />
+                Mostrar Tour
+              </button>
+
               {rol === "admin" ? (
                 <>
                   <Link

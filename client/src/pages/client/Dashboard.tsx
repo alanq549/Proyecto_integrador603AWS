@@ -92,7 +92,7 @@ const Dashboard = () => {
         </div>
 
         {/* Tarjetas de Acción */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="service-cards">
           {cards.map((card, index) => (
             <Link
               key={index}
@@ -119,7 +119,7 @@ const Dashboard = () => {
         </div>
 
         {/* Sección de Ayuda */}
-        <div className="mt-12 bg-white rounded-xl p-6 shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <div className="mt-12 bg-white rounded-xl p-6 shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700" id="section-help">
           <div className="flex items-center gap-4">
             <FaQuestionCircle className="text-blue-500 text-2xl" />
             <h2 className="text-xl font-semibold text-gray-800 dark:text-white">¿Necesitas ayuda?</h2>

@@ -280,7 +280,9 @@ const ConfiguracionAdmin = () => {
               </div>
 
               {/* Botón modo oscuro controlado por Context */}
-              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/80 rounded-lg transition-colors">
+              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/80 rounded-lg transition-colors"
+          id="btn-dark"
+>
                 <div>
                   <label
                     htmlFor="darkMode"
@@ -327,12 +329,14 @@ const ConfiguracionAdmin = () => {
             </h2>
 
             <div className="space-y-4">
+              <div>
               <Link
+              id="btn-changes-password"
                 to="#"
                 onClick={() => setShowPasswordModal(true)}
                 className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/80 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600/80 transition-colors"
               >
-                <div>
+                <div >
                   <h3 className="text-sm font-medium text-gray-700 dark:text-gray-100">
                     Cambiar contraseña
                   </h3>
@@ -348,13 +352,16 @@ const ConfiguracionAdmin = () => {
                   <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" />
                 </svg>
               </Link>
+              </div>
+
 
               <Link
+              id="btn-changes-email"
                 to="#"
                 onClick={() => setShowEmailModal(true)}
                 className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/80 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600/80 transition-colors"
               >
-                <div>
+                <div >
                   <h3 className="text-sm font-medium text-gray-700 dark:text-gray-100">
                     Cambiar correo electrónico
                   </h3>

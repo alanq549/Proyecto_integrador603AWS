@@ -92,7 +92,7 @@ const formatHora = (fechaInput: string | Date) => {
   console.log("Estado actual - ordenes:", ordenes, "loading:", loading); // Log 11 - Estado antes de render
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md mt-6 dark:bg-gray-900">
+    <div className="bg-white p-6 rounded-lg shadow-md mt-6 dark:bg-gray-900" id="history">
       <h2 className="text-xl font-semibold mb-4">Historial de Órdenes</h2>
 <ToastContainer
   position="top-right"
@@ -101,9 +101,9 @@ const formatHora = (fechaInput: string | Date) => {
   toastClassName="rounded-md shadow-lg"
 />
       {/* Filtro por estado con botones */}
-      <div>
+      <div id="btn-filter">
         <label className="block text-sm font-medium mb-1">Estado</label>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap" >
           {["", "pendiente", "completado", "cancelado"].map((estado) => {
             const labelMap: Record<string, string> = {
               "": "Todos",
